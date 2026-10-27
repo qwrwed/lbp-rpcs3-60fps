@@ -53,6 +53,11 @@ Game: LittleBigPlanet GOTY (BCES00611) with update 1.30. The code and data addre
   - star: 3.28 s → 1.67 s;
   - lamp: 3.98 s → 1.99 s;
   - butterflies: 5.28–5.35 s → 2.67 s.
+- Animation clock: the TOC float 30.0 at 0x8699ec drives it. Doubling it live slows the pod decorations to their 30fps speed, and bisecting all 25 copies of 30.0 in the data leaves only this one.
+  - It has six readers. The one at 0x1fe6c divides by it (`fdivs`) right after checking an animation's frame count; the others add it or multiply by it in other code.
+  - Patch for that reader alone, loading the TOC float 60.0 at 0x869b04 instead: `[ be32, 0x0001fe6c, 0xc0028664 ]`.
+  - With it at 60fps the pod decorations sway at 30fps speed: star 3.30 s, lamp 3.93 s.
+  - Sackboy's leg cycle does not follow this reader or the other five: running against a wall it stays 0.20 s with the reader at 30 or 60, and with 0x8699ec doubled.
 - RPCS3 0.0.43-20375 aborts at boot (SIGABRT, nothing in the log) with a modified update EBOOT; the original update EBOOT boots.
 - Objects: all 14 material files in the map have `gravityMultiplier` at unpacked byte 25 (revisions 0x159, 0x24d–0x26e). Multiplying each by 0.25 gives every object the 60fps gravity per tick. Revision 0x159 files have no compressed-flag byte before the chunk table.
   - The jump-frame limit stays at 9: raising it to 18 (`[ be32, 0x0004d500, 0x2f800012 ]`) makes the jump far too strong at 60fps (peak 25.8 per tick, about 530 units high).
