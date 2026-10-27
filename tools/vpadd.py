@@ -2,7 +2,7 @@
 
 Usage: vpadd.py <fifo>
 Write lines of steps to the FIFO, e.g. `echo "press:a wait:1 left:0.5" > <fifo>`.
-Steps: wait:<s>, press:<button> (a b x y start select ps), left:<s> / right:<s>.
+Steps: wait:<s>, press:<button> (a b x y start select ps), left:<s> / right:<s> / up:<s> / down:<s> (left stick held fully for s seconds).
 Each step prints a monotonic timestamp.
 """
 import os
@@ -43,10 +43,11 @@ with UInput(caps, name="Virtual Test Pad",vendor=0x045E, product=0x028E, version
                         time.sleep(0.12)
                         ui.write(e.EV_KEY, BUTTONS[arg], 0)
                         ui.syn()
-                    elif kind in ("left", "right"):
-                        ui.write(e.EV_ABS, e.ABS_X, -32767 if kind == "left" else 32767)
+                    elif kind in ("left", "right", "up", "down"):
+                        axis = e.ABS_X if kind in ("left", "right") else e.ABS_Y
+                        ui.write(e.EV_ABS, axis, -32767 if kind in ("left", "up") else 32767)
                         ui.syn()
                         time.sleep(float(arg))
-                        ui.write(e.EV_ABS, e.ABS_X, 0)
+                        ui.write(e.EV_ABS, axis, 0)
                         ui.syn()
                     print("%.3f end %s" % (time.monotonic() - t0, step), flush=True)
