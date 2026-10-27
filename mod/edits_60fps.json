@@ -1,0 +1,242 @@
+{
+ "gamedata/creatures/yellowhead.cha": [
+  {
+   "text": [
+    "\nFramesFromFireDeathTillRespawn\t35\n",
+    "\nFramesFromFireDeathTillRespawn\t70\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesFromIceDeathTillRespawn\t35\n",
+    "\nFramesFromIceDeathTillRespawn\t70\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesFromElectricDeathTillRespawn\t35\n",
+    "\nFramesFromElectricDeathTillRespawn\t70\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesFromCrushDeathTillRespawn\t35\n",
+    "\nFramesFromCrushDeathTillRespawn\t70\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesTillBurnedToDeath\t5\n",
+    "\nFramesTillBurnedToDeath\t10\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesSinceLastBurnToHeal\t50\n",
+    "\nFramesSinceLastBurnToHeal\t100\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesTillFreezeTouch\t20\n",
+    "\nFramesTillFreezeTouch\t40\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesTillSlappedToBits\t3\n",
+    "\nFramesTillSlappedToBits\t6\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesForCrush\t4\n",
+    "\nFramesForCrush\t8\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesForStun\t1\n",
+    "\nFramesForStun\t2\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesTillDrown\t\t\t\t\t\t\t900\n",
+    "\nFramesTillDrown\t\t\t\t\t\t\t1800\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFramesEndGasEmit\t1\n",
+    "\nFramesEndGasEmit\t2\n"
+   ]
+  },
+  {
+   "text": [
+    "\nWalkSpeedMaxDesired\t30\n",
+    "\nWalkSpeedMaxDesired\t15\n"
+   ]
+  },
+  {
+   "text": [
+    "\nAirSpeedMaxDesired\t22.5\n",
+    "\nAirSpeedMaxDesired\t11.25\n"
+   ]
+  },
+  {
+   "text": [
+    "\nJetpackSpeedMaxDesired\t30\n",
+    "\nJetpackSpeedMaxDesired\t15\n"
+   ]
+  },
+  {
+   "text": [
+    "\nFootAnimationSpeed\t1\n",
+    "\nFootAnimationSpeed\t0.5\n"
+   ]
+  },
+  {
+   "text": [
+    "\nArmUpdateSpeed\t0.8\n",
+    "\nArmUpdateSpeed\t0.5528\n"
+   ]
+  },
+  {
+   "text": [
+    "\nArmUpdateSpeedWhenGrabbing\t0.9\n",
+    "\nArmUpdateSpeedWhenGrabbing\t0.6838\n"
+   ]
+  },
+  {
+   "text": [
+    "\nHeadPositionUpdateSpeed\t0.2\n",
+    "\nHeadPositionUpdateSpeed\t0.1056\n"
+   ]
+  },
+  {
+   "text": [
+    "\nGroundTurnSpeed\t0.2\n",
+    "\nGroundTurnSpeed\t0.1056\n"
+   ]
+  },
+  {
+   "text": [
+    "\nAirTurnSpeed\t0.16\n",
+    "\nAirTurnSpeed\t0.0835\n"
+   ]
+  }
+ ],
+ "gamedata/materials/yellowhead.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/data/general_infinite_mass.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_gold.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_metal.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_sponge.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_cardboard.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/general_infinite_mass.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_stone.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_toxic_gas.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/enemy_dead.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_projectile.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_bullet.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/materials/base_materials/base_cardboard_without_bevel.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ],
+ "gamedata/mesh_library/themed/mgs/mgs_sandbag/sandbag.mat": [
+  {
+   "f32mul": [
+    25,
+    0.25
+   ]
+  }
+ ]
+}
