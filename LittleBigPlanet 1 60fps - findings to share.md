@@ -82,6 +82,7 @@ Game: LittleBigPlanet GOTY (BCES00611) with update 1.30. The code and data addre
   - Holding the stick into the pod's left wall, Sackboy steps in place with the 60fps setup (cycle 0.20 s, unchanged by this reader, the other five, the 1/30 constants or `FootAnimationSpeed` 0.25–1.0); in the 30fps original he turns to the wall in a pushing pose instead.
 - Frame generation route: on the Steam Machine (Desktop Mode, RPCS3 0.0.43, VSync on), lsfg-vk 2.0.0 with multiplier 2 doubles the output of the original 30fps game (patches off, data unedited). RPCS3 holds 30 FPS, so game speed is the original's.
   - Enabled per launch with environment variables: `LSFGVK_ENV=1 LSFGVK_MULTIPLIER=2`. Its "Hooked new Vulkan swapchain creation" message appears only with `LSFGVK_LOG_LEVEL=debug`.
+  - Played by hand on the Steam Machine with a controller: image and input response judged fine.
   - Mean frame-to-frame change on even and odd frames of 60 Hz recordings: frame generation 0.31 and 0.31; 60fps patch setup 0.34 and 0.34; 30fps original 0.05 and 0.60.
 - RPCS3 0.0.43-20375 aborts at boot (SIGABRT, nothing in the log) with a modified update EBOOT; the original update EBOOT boots.
 - Objects: all 14 material files in the map have `gravityMultiplier` at unpacked byte 25 (revisions 0x159, 0x24d–0x26e). Multiplying each by 0.25 gives every object the 60fps gravity per tick. Revision 0x159 files have no compressed-flag byte before the chunk table.
