@@ -49,6 +49,10 @@ Game: LittleBigPlanet GOTY (BCES00611) with update 1.30. The code and data addre
 - Walk on screen (0.3 s stick holds from the pod's left side): 30fps original about 85 px per hold, 60fps setup about 62 px at 52–55 FPS.
 - The game's speed follows its frame rate once these per-tick values are halved, so the setup only plays at normal speed when RPCS3 holds 60 FPS. On a Steam Deck (Desktop Mode) a story level runs at about 27 FPS even unpatched at 30, limited by RPCS3's RSX thread on the CPU; the pod reaches 51–55 FPS.
 - On a Steam Machine (RPCS3 0.0.43-20375, Desktop Mode) the full setup holds 59.9–60.0 FPS in The Meerkat Kingdom, standing and walking, at about 50–58% CPU.
+- Pod decorations sway twice as fast with the 60fps setup (sway period from 12 s recordings, 30fps original against 60fps setup):
+  - star: 3.28 s → 1.67 s;
+  - lamp: 3.98 s → 1.99 s;
+  - butterflies: 5.28–5.35 s → 2.67 s.
 - RPCS3 0.0.43-20375 aborts at boot (SIGABRT, nothing in the log) with a modified update EBOOT; the original update EBOOT boots.
 - Objects: all 14 material files in the map have `gravityMultiplier` at unpacked byte 25 (revisions 0x159, 0x24d–0x26e). Multiplying each by 0.25 gives every object the 60fps gravity per tick. Revision 0x159 files have no compressed-flag byte before the chunk table.
   - The jump-frame limit stays at 9: raising it to 18 (`[ be32, 0x0004d500, 0x2f800012 ]`) makes the jump far too strong at 60fps (peak 25.8 per tick, about 530 units high).
