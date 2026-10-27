@@ -3,8 +3,8 @@
 Usage (run from the update's USRDIR): anim_install.py <disc USRDIR> <base map> <path substring> [<looping name> ...]
 Takes every .anim whose path contains the substring, from the update's map (original bytes
 from the update's data.farc) or, if only on the disc, from the disc's blurayguids.map and
-data.farc. Each is frame-doubled with anim_resample (clips named in <looping name> loop,
-the rest clamp), written to USRDIR/<path>, and entered in output/brg_patch.map, which is
+data.farc. Each is frame-doubled with anim_resample. A clip loops when it is named in <looping name>, has
+"loop" in its name, or its last frame is about one frame-step from its first; the rest clamp, written to USRDIR/<path>, and entered in output/brg_patch.map, which is
 rebuilt from <base map> (entries updated in place; disc-only entries appended).
 """
 import hashlib
@@ -64,7 +64,8 @@ def main():
             skipped += 1
             continue
         a = anim_resample.parse(data)
-        loop = os.path.basename(name)[:-5] in looping
+        base = os.path.basename(name)[:-5]
+        loop = base in looping or "loop" in base or anim_resample.looks_looping(a)
         out = lbpmod.pack_binary(magic, rev, unk, anim_resample.build(anim_resample.resample(a, loop)), deps)
         os.makedirs(os.path.dirname(name), exist_ok=True)
         open(name, "wb").write(out)

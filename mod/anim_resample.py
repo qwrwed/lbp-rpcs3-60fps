@@ -60,6 +60,20 @@ def lerp(a, b, t, quat):
     return v
 
 
+def looks_looping(a, factor=1.5):
+    """True when the last frame is about one frame-step from the first (rotations only)."""
+    n = a["nframes"]
+    if n < 3:
+        return False
+    fr = frames_of(a["nb"], a["lists"][0], a["packed"][0], n)
+
+    def dist(x, y):
+        return sum(1 - abs(sum(p * q for p, q in zip(u, v))) for u, v in zip(x, y))
+    steps = sorted(dist(fr[i], fr[i + 1]) for i in range(n - 1))
+    typical = steps[len(steps) // 2]
+    return typical > 0 and dist(fr[-1], fr[0]) <= factor * typical
+
+
 def resample(a, loop):
     n = a["nframes"]
     m = 2 * n if loop else 2 * n - 1
