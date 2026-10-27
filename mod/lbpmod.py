@@ -53,10 +53,13 @@ def farc_lookup(sha):
 def unpack_binary(res):
     """Split a compressed resource (magic, revision, dep offset, flag, chunks) into parts."""
     magic, rev, dep_off = res[:4], res[4:8], struct.unpack(">I", res[8:12])[0]
+    # Revisions from 0x271 carry a 4-byte branch descriptor after the dependency offset.
+    branch = res[12:16] if int.from_bytes(rev, "big") >= 0x271 else b""
+    q = 12 + len(branch)
     # Newer revisions have a compressed-flag byte (1) before the chunk table; older ones start
     # the table straight away with a 16-bit 1.
-    flag = res[12] == 1
-    p = 13 if flag else 12
+    flag = res[q] == 1
+    p = q + 1 if flag else q
     assert flag or res[12:14] == b"\x00\x01", "unknown resource header"
     unk, count = struct.unpack(">HH", res[p:p + 4])
     sizes = [struct.unpack(">HH", res[p + 4 + 4 * i:p + 8 + 4 * i]) for i in range(count)]
@@ -67,17 +70,17 @@ def unpack_binary(res):
         data += chunk
         p += csz
     assert p == dep_off
-    return magic, rev, (unk, flag), data, res[dep_off:]
+    return magic, rev, (unk, flag, branch), data, res[dep_off:]
 
 
 def pack_binary(magic, rev, unk_flag, data, deps):
-    unk, flag = unk_flag
+    unk, flag, branch = unk_flag
     chunks = [zlib.compress(data[i:i + 0x8000], 9) for i in range(0, len(data), 0x8000)]
     head = struct.pack(">HH", unk, len(chunks))
     head += b"".join(struct.pack(">HH", len(c), min(0x8000, len(data) - 0x8000 * i))
                      for i, c in enumerate(chunks))
     body = b"".join(chunks)
-    pre = b"\x01" if flag else b""
+    pre = branch + (b"\x01" if flag else b"")
     dep_off = 12 + len(pre) + len(head) + len(body)
     return magic + rev + struct.pack(">I", dep_off) + pre + head + body + deps
 
