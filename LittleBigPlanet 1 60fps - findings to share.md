@@ -57,8 +57,7 @@ Game: LittleBigPlanet GOTY (BCES00611) with update 1.30. The code and data addre
   - It has six readers. The one at 0x1fe6c divides by it (`fdivs`) right after checking an animation's frame count; the others add it or multiply by it in other code.
   - Patch for that reader alone, loading the TOC float 60.0 at 0x869b04 instead: `[ be32, 0x0001fe6c, 0xc0028664 ]`.
   - With it at 60fps the pod decorations sway at 30fps speed: star 3.30 s, lamp 3.93 s.
-  - Sackboy's leg cycle does not follow this reader or the other five: running against a wall it stays 0.20 s with the reader at 30 or 60, and with 0x8699ec doubled.
-  - Leg cycle running against the pod's left wall: 0.334 s (10 ticks) in the 30fps original; 0.20 s (12 ticks) with the 60fps setup. Normal speed at 60fps needs 20 ticks per cycle.
+  - Holding the stick into the pod's left wall, Sackboy steps in place with the 60fps setup (cycle 0.20 s, unchanged by this reader, the other five, the 1/30 constants or `FootAnimationSpeed` 0.25–1.0); in the 30fps original he turns to the wall in a pushing pose instead.
 - RPCS3 0.0.43-20375 aborts at boot (SIGABRT, nothing in the log) with a modified update EBOOT; the original update EBOOT boots.
 - Objects: all 14 material files in the map have `gravityMultiplier` at unpacked byte 25 (revisions 0x159, 0x24d–0x26e). Multiplying each by 0.25 gives every object the 60fps gravity per tick. Revision 0x159 files have no compressed-flag byte before the chunk table.
   - The jump-frame limit stays at 9: raising it to 18 (`[ be32, 0x0004d500, 0x2f800012 ]`) makes the jump far too strong at 60fps (peak 25.8 per tick, about 530 units high).
